@@ -19,6 +19,7 @@ package com.liveramp.cascading_ext.operation;
 import cascading.flow.FlowProcess;
 import cascading.operation.Function;
 import cascading.operation.FunctionCall;
+import cascading.tuple.Fields;
 import cascading.tuple.TupleEntry;
 import com.liveramp.cascading_ext.operation.forwarding.ForwardingFunction;
 import com.liveramp.cascading_ext.util.OperationStatsUtils;
@@ -76,5 +77,10 @@ public class FunctionStats extends ForwardingFunction {
       super.setDelegate(delegate);
       collector.setOutputCollector(delegate.getOutputCollector());
     }
+
+	@Override
+	public Fields getDeclaredFields() {
+		return delegate.getDeclaredFields();
+	}
   }
 }

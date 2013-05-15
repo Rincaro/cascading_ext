@@ -19,6 +19,7 @@ package com.liveramp.cascading_ext.operation;
 import cascading.flow.FlowProcess;
 import cascading.operation.Aggregator;
 import cascading.operation.AggregatorCall;
+import cascading.tuple.Fields;
 import cascading.tuple.TupleEntry;
 import com.liveramp.cascading_ext.operation.forwarding.ForwardingAggregator;
 import com.liveramp.cascading_ext.util.OperationStatsUtils;
@@ -100,5 +101,10 @@ public class AggregatorStats extends ForwardingAggregator {
       super.setDelegate(delegate);
       collector.setOutputCollector(delegate.getOutputCollector());
     }
+
+	@Override
+	public Fields getDeclaredFields() {
+		return delegate.getDeclaredFields();
+	}
   }
 }

@@ -17,6 +17,7 @@
 package com.liveramp.cascading_ext.flow;
 
 import cascading.flow.*;
+import cascading.flow.hadoop.HadoopFlow;
 import cascading.flow.hadoop.planner.HadoopPlanner;
 import cascading.flow.hadoop.util.HadoopUtil;
 import cascading.flow.hadoop.util.ObjectSerializer;
@@ -47,20 +48,12 @@ public class LoggingHadoopPlanner extends HadoopPlanner {
   }
 
   @Override
-  public Flow buildFlow(FlowDef flowDef) {
-    Flow<JobConf> internalFlow = super.buildFlow(flowDef);
+  public HadoopFlow buildFlow(FlowDef flowDef) {
+    HadoopFlow internalFlow = super.buildFlow(flowDef);
     internalFlow.setFlowStepStrategy(flowStepStrategy);
-    return new LoggingFlow(internalFlow);
+    return internalFlow;
   }
 
-  @Override
-  protected ElementGraph createElementGraph(FlowDef flowDef) {
-    final ElementGraph elementGraph = super.createElementGraph(flowDef);
-
-    verifyAllOperationsAreSerializable(elementGraph);
-
-    return elementGraph;
-  }
 
   protected void initialize(FlowConnector flowConnector) {
     super.initialize(flowConnector, properties);
