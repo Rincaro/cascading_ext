@@ -40,7 +40,8 @@ public class KillTaskAttempts {
     System.out.println("Only continue if you REALLY know what you are doing");
     System.out.println("Press Enter to confirm:");
 
-    new Scanner(System.in).nextLine();
+    Scanner scanner = new Scanner(System.in);
+    scanner.nextLine();
 
     JobClient jobClient = new JobClient(new InetSocketAddress(jobTracker, port), new Configuration());
 
@@ -90,5 +91,6 @@ public class KillTaskAttempts {
       killed++;
     }
     System.out.println("Killed "+killed+" total task attempts");
+    scanner.close();
   }
 }
