@@ -20,6 +20,7 @@ import com.liveramp.cascading_ext.BaseTestCase;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -51,14 +52,14 @@ public class TestBloomFilter extends BaseTestCase {
     assertFalse(set.membershipTest(arr3));
 
     // now test that we can write and read from file just fine
-    new File("/tmp/filter-test.bloomfilter").delete();
+    String pathname = "/tmp/filter-test.bloomfilter" + UUID.randomUUID().toString();
 
-    DataOutputStream os = new DataOutputStream(new FileOutputStream("/tmp/filter-test.bloomfilter"));
+    DataOutputStream os = new DataOutputStream(new FileOutputStream(pathname));
     set.write(os);
     os.close();
 
     BloomFilter set2 = new BloomFilter();
-    DataInputStream in = new DataInputStream(new FileInputStream("/tmp/filter-test.bloomfilter"));
+    DataInputStream in = new DataInputStream(new FileInputStream(pathname));
     set2.readFields(in);
     in.close();
 
