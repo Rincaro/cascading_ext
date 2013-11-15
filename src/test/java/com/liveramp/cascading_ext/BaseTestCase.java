@@ -16,6 +16,8 @@
 
 package com.liveramp.cascading_ext;
 
+import java.util.UUID;
+
 import com.liveramp.cascading_ext.bloom.BloomProps;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -32,7 +34,7 @@ public abstract class BaseTestCase {
   }
 
   protected BaseTestCase(){
-    TEST_ROOT = "/tmp/cascading_ext_" + this.getClass().getSimpleName() + "_AUTOGEN";
+    TEST_ROOT = "/tmp/cascading_ext_" + this.getClass().getSimpleName() + "_AUTOGEN" + UUID.randomUUID().toString();
   }
 
   @Before

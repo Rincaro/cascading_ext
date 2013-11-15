@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -47,8 +48,8 @@ public class TestMultiGroupBy extends BaseTestCase {
   private Hfs source1;
   private Hfs source2;
 
-  private final String SOURCE1 = getTestRoot() + "/mgb_source1";
-  private final String SOURCE2 = getTestRoot() + "/mgb_source2";
+  private final String SOURCE1 = getTestRoot() + "/mgb_source1" + UUID.randomUUID().toString();
+  private final String SOURCE2 = getTestRoot() + "/mgb_source2" + UUID.randomUUID().toString();
 
   @Before
   public void setUp() throws IOException {
