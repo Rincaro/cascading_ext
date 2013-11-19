@@ -73,14 +73,14 @@ public class FunctionStats extends ForwardingFunction {
     }
 
     @Override
+    public Fields getDeclaredFields() {
+      return delegate.getDeclaredFields();
+    }
+
+    @Override
     public void setDelegate(FunctionCall<Context> delegate) {
       super.setDelegate(delegate);
       collector.setOutputCollector(delegate.getOutputCollector());
     }
-
-	@Override
-	public Fields getDeclaredFields() {
-		return delegate.getDeclaredFields();
-	}
   }
 }

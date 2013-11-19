@@ -80,25 +80,24 @@ public class BufferStats extends ForwardingBuffer {
     }
 
     @Override
+    public Fields getDeclaredFields() {
+      return delegate.getDeclaredFields();
+    }
+
+    @Override
+    public void setRetainValues(boolean retainValues) {
+      delegate.setRetainValues(retainValues);
+    }
+
+    @Override
+    public boolean isRetainValues() {
+      return delegate.isRetainValues();
+    }
+
+    @Override
     public void setDelegate(BufferCall<Context> delegate) {
       super.setDelegate(delegate);
       collector.setOutputCollector(delegate.getOutputCollector());
     }
-
-	@Override
-	public Fields getDeclaredFields() {
-		return delegate.getDeclaredFields();
-	}
-
-	@Override
-	public void setRetainValues(boolean retainValues) {
-		delegate.setRetainValues(retainValues);
-		
-	}
-
-	@Override
-	public boolean isRetainValues() {
-		return delegate.isRetainValues();
-	}
   }
 }

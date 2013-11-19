@@ -51,41 +51,13 @@ public class Counter implements Comparable<Counter> {
   }
 
   @Override
-public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((group == null) ? 0 : group.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + ((value == null) ? 0 : value.hashCode());
-    return result;
-}
-
-@Override
-public boolean equals(Object obj) {
-    if (this == obj)
-        return true;
-    if (obj == null)
-        return false;
-    if (getClass() != obj.getClass())
-        return false;
-    Counter other = (Counter) obj;
-    if (group == null) {
-        if (other.group != null)
-            return false;
-    } else if (!group.equals(other.group))
-        return false;
-    if (name == null) {
-        if (other.name != null)
-            return false;
-    } else if (!name.equals(other.name))
-        return false;
-    if (value == null) {
-        if (other.value != null)
-            return false;
-    } else if (!value.equals(other.value))
-        return false;
-    return true;
-}
+  public boolean equals(Object other) {
+    return other != null
+        && other instanceof Counter
+        && ((Counter) other).group.equals(group)
+        && ((Counter) other).name.equals(name)
+        && ((Counter) other).value.equals(value);
+  }
 
   private String prettyValue() {
     if (value == null) {
@@ -110,4 +82,10 @@ public boolean equals(Object obj) {
         .append(name, counter.getName())
         .append(value, counter.getValue()).toComparison();
   }
+
+@Override
+public int hashCode() {
+    // TODO Auto-generated method stub
+    return super.hashCode();
+}
 }

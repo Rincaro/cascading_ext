@@ -97,14 +97,14 @@ public class AggregatorStats extends ForwardingAggregator {
     }
 
     @Override
+    public Fields getDeclaredFields() {
+      return delegate.getDeclaredFields();
+    }
+
+    @Override
     public void setDelegate(AggregatorCall<Context> delegate) {
       super.setDelegate(delegate);
       collector.setOutputCollector(delegate.getOutputCollector());
     }
-
-	@Override
-	public Fields getDeclaredFields() {
-		return delegate.getDeclaredFields();
-	}
   }
 }

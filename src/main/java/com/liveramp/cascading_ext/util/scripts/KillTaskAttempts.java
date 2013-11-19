@@ -42,6 +42,7 @@ public class KillTaskAttempts {
 
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
+    scanner.close();
 
     JobClient jobClient = new JobClient(new InetSocketAddress(jobTracker, port), new Configuration());
 
@@ -91,6 +92,5 @@ public class KillTaskAttempts {
       killed++;
     }
     System.out.println("Killed "+killed+" total task attempts");
-    scanner.close();
   }
 }
